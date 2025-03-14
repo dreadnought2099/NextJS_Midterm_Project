@@ -1,42 +1,63 @@
 import Link from "next/link";
 
-export interface Products{
-    id: number,
-    title: string,
-    description: string,
+export interface Product {
+  id: number;
+  title: string;
+  description: string;
+  thumbnail: string;
 }
 
-const Card = ({product}:{product:Products}):React.ReactNode => {
+const Card = ({ product }: { product: Product }) => {
+    return (
+      <div className="max-w-md w-full bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:scale-105 cursor-pointer group">
+        <img
+          src={product.thumbnail}
+          alt={product.title}
+          className="w-full h-48 object-cover"
+        />
+        <div className="p-4">
+          {/* Group-hover applies the hover effect when the card is hovered */}
+          <h2 className="text-lg font-bold text-gray-700 group-hover:text-[var(--text-color)] truncate">
+            {product.title}
+          </h2>
+          <p className="text-sm text-gray-500 group-hover:text-[var(--text-secondary-color)] line-clamp-2">
+            {product.description}
+          </p>
+        </div>
+      </div>
+    );
+  };
+  
+const Page = async () => {
+  const res = await fetch("https://dummyjson.com/products");
+  if (!res.ok) {
+    return <p className="text-center text-red-500">Failed to load products.</p>;
+  }
+
+  const data = await res.json();
+  const products: Product[] = data.products;
+
   return (
-    <div className="w-1/2 py-4 px-3 rounded-lg shadow-lg">
-    <h2 className="text-xl font-bold text-slate-500 truncate">{product.title}</h2>
-    <p className="text-sm">{product.description}</p>
-</div>
-  )
-}
+    <div className="min-h-screen py-8 px-6 bg-gray-100">
+      <div className="mb-6">
+        <Link href="/" className="button">
+          &larr; Back
+        </Link>
+      </div>
 
+      <h1 className="text-center text-3xl font-extrabold text-secondary-color mb-6">
+        All Products
+      </h1>
 
-
-const page = async () => {
-    const res = await fetch('https://dummyjson.com/products');
-    const data = await res.json();
-
-    const products: Products[]= data.products;
-
-return <div className="py-5" >
-    <div className=" px-7">
-    <Link href={'/'} className="text-xl transform ease-in-out hover:text-slate-400 duration-75">Back</Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
+        {products.length > 0 ? (
+          products.map((p) => <Card key={p.id} product={p} />)
+        ) : (
+          <p className="text-center text-gray-500 col-span-full">No products available.</p>
+        )}
+      </div>
     </div>
+  );
+};
 
-    <h1 className="text-center text-3xl font-bold  mb-5 " >All Products</h1>
-    <div className="grid grid-cols-3 place-items-center gap-3 ">
-        {products?.map(p => {
-            return (
-               <Card key={p.id} product={p}/>
-            )
-        })}
-    </div>
-</div>
-}
-
-export default page;
+export default Page;
