@@ -9,7 +9,7 @@ return <>
 
     <div className="mt-6 space-x-7  ">
       <Link href={'/products'} className="button">See Products</Link>
-      <Link href={'/todos'} className="button">See To Do's</Link>
+      <Link href={'/todos'} className="button">See To Do&apos;s</Link>
     </div>
   </div>
    </div>
