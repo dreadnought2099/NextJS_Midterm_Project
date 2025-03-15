@@ -38,7 +38,7 @@ const Page = () => {
     <div className="min-h-screen bg-gray-100">
       <div className="fixed top-0 left-0 right-0 z-10 bg-white py-4 px-7 shadow-md">
         <div className="flex items-center space-x-4">
-          <Link href="/" className="button text-lg">
+          <Link href="/" className="button">
             &larr; Back
           </Link>
           <h1 className="text-3xl font-extrabold text-secondary-color">

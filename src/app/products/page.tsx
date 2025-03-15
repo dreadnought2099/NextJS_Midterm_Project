@@ -52,12 +52,12 @@ const Page = async () => {
 
   // Defines the React Component that will be rendered when the page component is called
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 mb-10">
       {/* Fixed Back Button and Heading Container */}
-      <div className="fixed top-0 left-0 right-0 z-10 bg-white py-4 px-6 shadow-md">
+      <div className="fixed top-0 left-0 right-0 z-10 bg-white py-4 px-7 shadow-md">
         <div className="flex items-center space-x-4">
           <div>
-            <Link href="/" className="button text-lg">
+            <Link href="/" className="button">
               &larr; Back
             </Link>
           </div>
