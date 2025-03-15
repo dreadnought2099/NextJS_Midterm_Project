@@ -17,12 +17,16 @@
   .text-color {
     color: var(--text-color);
   }
-  
+
   .hover\:text-color {
     @apply hover:text-[var(--text-color)];
   }
 
   .hover\:text-secondary-color {
+    @apply hover:text-[var(--text-secondary-color)];
+  }
+
+  .hover\:bg-text-secondary-color {
     @apply hover:text-[var(--text-secondary-color)];
   }
 }

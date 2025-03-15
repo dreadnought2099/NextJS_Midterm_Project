@@ -66,11 +66,13 @@ const Page = () => {
               {todos.map(({ id, todo, completed }) => (
                 <tr
                   key={id}
-                  className="border-t border-gray-300 text-center hover:bg-gray-100"
+                  className="border-t border-gray-300 text-center cursor-pointer "
                 >
-                  <td className="px-4 py-2">{todo}</td>
+                  <td className="px-4 py-2 hover:bg-text-secondary-color">
+                    {todo}
+                  </td>
                   <td
-                    className={`px-4 py-2 font-semibold ${
+                    className={`px-4 py-2 font-semibold  ${
                       completed ? "text-secondary-color" : "text-red-500"
                     }`}
                   >
