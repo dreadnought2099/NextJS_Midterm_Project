@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
+// Export props of the Product interface
 export interface Product {
   id: number;
   title: string;
@@ -10,6 +11,7 @@ export interface Product {
 
 const Card = ({ product }: { product: Product }) => {
   return (
+    //Group is declared here
     <div className="max-w-md w-full bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:scale-105 cursor-pointer group">
       {/* <img
           src={product.thumbnail}
@@ -34,36 +36,48 @@ const Card = ({ product }: { product: Product }) => {
     </div>
   );
 };
-
+// Fetches and displays the api
 const Page = async () => {
+  // Performs a fetch request
   const res = await fetch("https://dummyjson.com/products");
+
+  // Checks if fetch request was successful
   if (!res.ok) {
     return <p className="text-center text-red-500">Failed to load products.</p>;
   }
 
+  // Converts the response into a JSON object
   const data = await res.json();
   const products: Product[] = data.products;
 
+  // Defines the React Component that will be rendered when the page component is called
   return (
-    <div className="min-h-screen py-8 px-6 bg-gray-100">
-      <div className="mb-6">
-        <Link href="/" className="button">
-          &larr; Back
-        </Link>
+    <div className="min-h-screen bg-gray-100">
+      {/* Fixed Back Button and Heading Container */}
+      <div className="fixed top-0 left-0 right-0 z-10 bg-white py-4 px-6 shadow-md">
+        <div className="flex items-center space-x-4">
+          <div>
+            <Link href="/" className="button text-lg">
+              &larr; Back
+            </Link>
+          </div>
+          <h1 className="text-3xl font-extrabold text-secondary-color">
+            All Products
+          </h1>
+        </div>
       </div>
 
-      <h1 className="text-center text-3xl font-extrabold text-secondary-color mb-6">
-        All Products
-      </h1>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
-        {products.length > 0 ? (
-          products.map((p) => <Card key={p.id} product={p} />)
-        ) : (
-          <p className="text-center text-gray-500 col-span-full">
-            No products available.
-          </p>
-        )}
+      {/* Content Below the Header */}
+      <div className="pt-24 px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
+          {products.length > 0 ? (
+            products.map((p) => <Card key={p.id} product={p} />)
+          ) : (
+            <p className="text-center text-gray-500 col-span-full">
+              No products available at the moment.
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
