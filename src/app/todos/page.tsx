@@ -68,7 +68,7 @@ const Page = () => {
                   key={id}
                   className="border-t border-gray-300 text-center cursor-pointer "
                 >
-                  <td className="px-4 py-2 hover:bg-text-secondary-color">
+                  <td className="px-4 py-2 hover:bg-text-tertiary-color">
                     {todo}
                   </td>
                   <td

@@ -6,6 +6,7 @@
     --color-secondary: #ffc1b4;
     --text-color: #034c53;
     --text-secondary-color: #007074;
+    --text-tertiary-color: #c2e7e8;
   }
 }
 
@@ -26,8 +27,8 @@
     @apply hover:text-[var(--text-secondary-color)];
   }
 
-  .hover\:bg-text-secondary-color {
-    @apply hover:text-[var(--text-secondary-color)];
+  .hover\:bg-text-tertiary-color {
+    @apply hover:bg-[var(--text-tertiary-color)];
   }
 }
 
